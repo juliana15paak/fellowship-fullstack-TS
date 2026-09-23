@@ -1,4 +1,5 @@
 import { Book } from "../entities/Book";
+import { User } from "../entities/User";
 import {IBookRepository} from '../repositories/interfaces/IBookRepository'
 import {IUserRepository} from '../repositories/interfaces/IUserRepository'
 import {ILoanRepository} from '../repositories/interfaces/ILoanRepository'
@@ -9,23 +10,27 @@ export class LibraryService{
         protected users: IUserRepository,
         protected loans: ILoanRepository
     ){}
-    registerBook(): void{
+    registerBook(booksList: Book[]): void{
         try{
-
+            for(let book of booksList){
+                this.books.save(book);
+            }
         }catch(e){
             console.log(e);
         }
     }
-    registerUser(): void{
+    registerUser(usersList: User[]): void{
         try{
-
+            for(let user of usersList){
+                this.users.save(user);
+            }
         }catch(e){
             console.log(e);
         }
     }
     loanBook(): void{
         try{
-
+            
         }catch(e){
             console.log(e);
         }

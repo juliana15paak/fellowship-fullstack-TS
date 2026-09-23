@@ -4,11 +4,11 @@ import {Book} from '../entities/Book';
 export class BookRepository implements IBookRepository{
     private books = new Map<number, Book>();
 
-    save(id: number, book: Book){
-        if(this.books.has(id)){
+    save(book: Book){
+        if(this.books.has(book.id)){
             throw new Error('Already exists a book with this Id saved.')
         } else {
-            this.books.set(id, book);
+            this.books.set(book.id, book);
         }
     }
     findById(id: number): Book | undefined {

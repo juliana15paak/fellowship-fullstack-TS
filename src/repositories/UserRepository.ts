@@ -4,11 +4,11 @@ import {User} from '../entities/User';
 export class UserRepository implements IUserRepository{
     private users = new Map<number, User>();
 
-    save(id: number, user: User): void{
-        if(this.users.has(id)){
+    save(user: User): void{
+        if(this.users.has(user.id)){
             throw new Error('Already exists a user with this Id saved.')
         } else {
-            this.users.set(id, user);
+            this.users.set(user.id, user);
             return
         }
     }
