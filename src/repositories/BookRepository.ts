@@ -1,21 +1,28 @@
-import{IBookRepository} from '../repositories/interfaces/IBookRepository';
+import{IBookRepository} from './interfaces/IBookRepository';
 import {Book} from '../entities/Book';
 
 export class BookRepository implements IBookRepository{
-    private livros = new Map<number, Book>();
+    private books = new Map<number, Book>();
 
     save(id: number, book: Book){
-        if(this.livros.has(id)){
+        if(this.books.has(id)){
             throw new Error('Already exists a book with this Id saved.')
         } else {
-            this.livros.set(id, book);
+            this.books.set(id, book);
         }
     }
     findById(id: number): Book | undefined {
-        if(this.livros.get(id) === undefined){
+        if(this.books.get(id) === undefined){
             throw new Error('Book do not founded.');
         } else {
-            return this.livros.get(id);
+            return this.books.get(id);
+        }
+    }
+    findAll(): Book[]{
+        if(this.books.size <= 0){
+            throw new Error('Do not have books registered.')
+        } else {
+            return [...this.books.values()];
         }
     }
 }

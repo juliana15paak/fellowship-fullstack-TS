@@ -1,7 +1,7 @@
-import { Book } from "../../entities/Book";
+import { Loan } from "../../entities/Loan";
 
 export interface ILoanRepository{
-    save(): void;
-    remove(): void;
-    findAll(): Book;
+    save(userId: number, bookId: number): void;
+    remove(userId: number, bookId: number): void;
+    findAll(): Loan[];
 }
